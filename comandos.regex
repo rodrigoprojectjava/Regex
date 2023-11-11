@@ -1,0 +1,89 @@
+#ctrl shift f - Procura em todo o path atual
+
+item [acd] - retorna apenas os que estão dentro do colchetes - vazio dá erro!
+
+todos os itens menos os que estão em colchetes [^cd]
+
+item [^e]: quando não queremos encontrar caracteres que estão dentro do colchetes.  O : significa que eu sei que
+o padrão é ter :
+
+Range [a-z] - desde o primeiro até o último caracter inclusive maiúsculo e minúsculo e caracteres que estão na tabela ASCII
+Pegar apenas letras de "a" até "z" sem caracteres: [A-Za-z]
+
+\n - Vem do inglês new line 
+\nitem - Os itens que estão após a quebra de linha
+
+. - No Regex ele encontra tudo menos \n
+\.[un] - Neste caso ele tá usando um escape \ mais o . (que passa a ser um caracter normal) mais quem estiver depois do .,
+no caso o \n
+[.][nr] - O mesmo caso assima 
+
+/\s/g - Em linguagem de programação o \s significa whitespace e o /g significa global, logo, encontra todo espaço em
+branco que tiver. desde espaço até tabulação
+
+/\S/g - Neste caso ele encontra tudo menos espaço
+
+(/[\s\S]/g) No caso abaixo encontra-se tudo, exatamente tudo
+
+\d Encontra todos os caracteres numéricos. É a mesma coisa que [0-9], a diferença que no [0-9] você consegue delimitar
+o range de números.
+
+\D - Encontra todos os caracteres que não sejam numéricos. É a mesma coisa que [^0-9] onde a diferença é que vc 
+pode delimitar o range de números
+
+\w ou [a-zA-z0-9_] - Token usado para identificar usernames. Não encontra espaços nem símbolos.
+
+\W encontra letras e números. não pega caracteres 
+
+(\d\d\d)(\d\d\d)(\d\d\d)(\d\d) ou (\d{3})(\d{3})(\d{3})(\d{2}) replace $1.$2.$3-$4 Formatando cpf - Cpf sem pontuação para com pontuação ou também
+(...)(...)(...)(..)
+ou 
+
+(\d\d\d)(\.)(\d\d\d)(\.)(\d\d\d)(-)(\d\d) replace $1$3$5$7 - Ao contrário, com pontuação para sem pontuação
+(...)(\.)(...)(\.)(...)(-)(..)
+
+Caso queira apenas encontrar os cpfs: (\d{3}){3}(\d{2}) 
+
+
+[.](jpeg|png|pdf) - Caso queiramos encontrar um grupo com sequencia de extensões
+
+
+[.](jp?g|png|pdf) - Caso queiramos encontrar a extensão jpg, utilizamos o ? para caracter opcional
+(file)?[.](jp?g|png|pdf) - Neste caso se houver um arquivo chamado file.png, ele tbm encontra, ou encontra todos os pngs
+
+W\w* - Encontra depois da letra W zero ou mais caracteres
+W.* - Encontra nomes e sobrenomes que comecem com W pega espaço mas não pega quebra de linha
+
+
+\d{14} Encontra a quantidade de 14 números
+
+\d{5,} Encontra a quantidade mínima de dígitos pra frente
+
+\d{5,14} Encontra a quantidade mínima de dígitos e a quantidade máxima
+
+^\d{4,8} O token ^ pega no início da linha, encontra a posição do início da linha
+
+^\d{4,7}$ Ancora de posição não encontram caracteres, encontram posições, lembrando que estamos falando de números
+
+\d{4,7}$ neste caso ele vai encontrar números que começam na 4a posição e vão até a 7a
+
+\b Encontra limite de posição de palavras
+
+\B Encontra todas as posições menos espaço funciona em cima do \w que não pega assento
+
+ e\b Encontra a letra e no final da palavra
+
+\be Encontra a letra no início da palavra
+
+\Be\B Encontra a letra e no meio da palavra
+
+\A Encontra o início do arquivo. Pode colocar outros tokens para ser pesquisado
+
+\z Encontra a posição final do texto
+
+\A[\s\S]*\z Seleciona todo o texto, independente do conteúdo
+
+\Z - Final absoluto, com quebra de linha
+
+
+
